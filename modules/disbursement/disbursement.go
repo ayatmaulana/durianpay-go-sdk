@@ -7,7 +7,7 @@ import (
 )
 
 const (
-  ROUTE_GROUP = "/disbursement"
+  ROUTE_GROUP = "/disbursements"
 )
 
 type Disbursement struct {

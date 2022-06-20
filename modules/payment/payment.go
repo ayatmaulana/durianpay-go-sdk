@@ -1,29 +1,41 @@
 package payment
 
-func FetchPayment() {
+import "github.com/ayatmaulana/durianpay-go-sdk/common"
+
+const (
+  ROUTE_GROUP = "/payments"
+)
+
+
+type Payment struct {
+  *common.Agent
+}
+
+
+func (p *Payment) FetchPayment() {
 
 }
 
-func FetchPaymentById() {
+func (p *Payment) FetchPaymentById() {
 
 }
 
-func ChargePayment() {
+func (p *Payment) ChargePayment() {
 
 }
 
-func CheckPaymentStatus() {
+func (p *Payment) CheckPaymentStatus() {
 
 }
 
-func VerifyPayment(){
+func (p *Payment) VerifyPayment(){
 
 }
 
-func CancelPayment(){
+func (p *Payment) CancelPayment(){
 
 }
 
-func MDRFeeCalculation() {
+func (p *Payment) MDRFeeCalculation() {
 
 }
