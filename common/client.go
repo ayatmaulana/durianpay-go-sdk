@@ -1,6 +1,7 @@
 package common
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"io"
@@ -19,11 +20,15 @@ func (agent *Agent) Call(
   ctx context.Context, 
   method,
   url string, 
-  body io.Reader,
-) {
+  body any,
+  response any,
+) error {
   fullUrl := BASE_URL + url
 
-  req, err := http.NewRequest(method, fullUrl, body)
+  var bodyBuffer bytes.Buffer
+  err := json.NewEncoder(&bodyBuffer).Encode(body)
+
+  req, err := http.NewRequest(method, fullUrl, &bodyBuffer)
 
   if err != nil {
 
@@ -43,14 +48,14 @@ func (agent *Agent) Call(
 
   // decode body
   if res.StatusCode >= 200 && res.StatusCode <= 209 {
-
+    json.NewDecoder(res.Body).Decode(response)
   } else if res.StatusCode >= 400 && res.StatusCode <= 409 {
 
   } else if res.StatusCode >= 500 && res.StatusCode <= 509 {
 
   }
 
-
+  return nil
 }
 
 func NewAgent(clientConfig *ClientConfig) *Agent {

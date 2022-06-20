@@ -10,36 +10,55 @@ const (
   ROUTE_GROUP = "/disbursement"
 )
 
-type Disburesement struct {
+type Disbursement struct {
   *common.Agent
 }
 
-func (d *Disburesement) FetchBankList(ctx context.Context) (res *ResponseBankList, err error) {
-  d.Agent.Call(ctx, "GET",  ROUTE_GROUP + "/banks", nil)
+func (d *Disbursement) FetchBankList(ctx context.Context) (res *ResponseBankList, err error) {
+  err = d.Agent.Call(ctx, "GET", ROUTE_GROUP + "/banks", nil, res)
   return 
 }
 
-
-func Topup() {
-
+func (d *Disbursement) Topup(ctx context.Context, req *TopupRequestPayload) (res *TopupResponse, err error) {
+  err = d.Agent.Call(ctx, "POST", ROUTE_GROUP + "/topup", req, res)
+  return 
 }
 
-func TopupDetailById() {
-
+func (d *Disbursement) TopupDetailById(ctx context.Context, topupId string) (res *TopupHistoryResponse, err error) {
+  err = d.Agent.Call(ctx, "GET", ROUTE_GROUP + "/topup/" + topupId, nil, res)
+  return
 }
 
-func FetchBalance() {
-
+func (d *Disbursement) FetchBalance(ctx context.Context) (res *FetchBalanceResponse, err error) {
+  err = d.Agent.Call(ctx, "GET", ROUTE_GROUP + "/topup/balance", nil, res)
+  return
 }
 
-func SubmitDisbursement() {
-
+func (d *Disbursement) SubmitDisbursement(ctx context.Context, req *SubmitDisbursementRequestPayload) (res *SubmitDisbursementResponse, err error) {
+  err = d.Agent.Call(ctx, "POST", ROUTE_GROUP + "/submit", req, res)
+  return
 }
 
-func ApproveDisbursement() {
-
+func (d *Disbursement) ApproveDisbursement(ctx context.Context, disbursementId string) (res *ApproveDisbursementResponse, err error){
+  err = d.Agent.Call(ctx, "POST", ROUTE_GROUP + disbursementId + "/approve", nil, res)
+  return
 }
 
-func FetchDisburesementItemsById() {
-
+func (d *Disbursement) FetchDisbursementItemsById(ctx context.Context, disbursementId string) (res *FetchDisbursementItemsByIdResponse, err error) {
+  err = d.Agent.Call(ctx, "GET", ROUTE_GROUP + disbursementId + "/items", nil, res)
+  return
 }
+
+func (d *Disbursement) FetchDisbursementById(ctx context.Context, disbursementId string) (res *FetchDisbursementByIdResponse, err error) {
+  err = d.Agent.Call(ctx, "GET", ROUTE_GROUP + disbursementId, nil, res)
+  return
+}
+func (d *Disbursement) DeleteDisbursement(ctx context.Context, disbursementId string) (res *DeleteDisbursementResponse, err error){
+  err = d.Agent.Call(ctx, "DELETE", ROUTE_GROUP + disbursementId, nil, res)
+  return
+}
+func (d *Disbursement) ValidateBankAccount(ctx context.Context, req *ValidateBankACcountRequestPayload) (res *ValidateBankAccountResponse, err error) {
+  err = d.Agent.Call(ctx, "POST", ROUTE_GROUP + "/validate", req, res)
+  return
+}
+
