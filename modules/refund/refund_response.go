@@ -61,7 +61,7 @@ type FetchRefundResponse struct {
 	} `json:"data"`
 }
 
-type FetchrefundByIdResponse struct {
+type FetchRefundByIdResponse struct {
 	Data struct {
 		ID            string      `json:"id"`
 		RefID         interface{} `json:"ref_id"`
