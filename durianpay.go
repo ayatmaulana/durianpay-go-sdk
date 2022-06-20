@@ -7,6 +7,7 @@ import (
 	"github.com/ayatmaulana/durianpay-go-sdk/modules/order"
 	"github.com/ayatmaulana/durianpay-go-sdk/modules/payment"
 	"github.com/ayatmaulana/durianpay-go-sdk/modules/promo"
+	"github.com/ayatmaulana/durianpay-go-sdk/modules/refund"
 	"github.com/ayatmaulana/durianpay-go-sdk/modules/settlement"
 )
 
@@ -16,6 +17,7 @@ type Modules struct {
   Payment payment.Payment
   Promo promo.Promo
   Settlement settlement.Settlement
+  Refund refund.Refund
 }
 
 func NewClient(config *common.ClientConfig) *Modules {
@@ -27,5 +29,6 @@ func NewClient(config *common.ClientConfig) *Modules {
     Payment: payment.Payment{Agent: agent},
     Promo: promo.Promo{Agent: agent},
     Settlement: settlement.Settlement{Agent: agent},
+    Refund: refund.Refund{Agent: agent},
   }
 }
