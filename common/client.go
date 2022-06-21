@@ -23,6 +23,8 @@ func (agent *Agent) Call(
   response any,
 ) error {
   fullUrl := BASE_URL + url
+  
+  agent.Logger.Infoln(fullUrl)
 
   var bodyBuffer bytes.Buffer
   err := json.NewEncoder(&bodyBuffer).Encode(body)
@@ -36,6 +38,7 @@ func (agent *Agent) Call(
   req.WithContext(ctx)
   req.SetBasicAuth(agent.ClientConfig.ApiKey, "")
   req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("Accept", "application/json")
 
   res, err := agent.HttpClient.Do(req)
 
@@ -45,9 +48,11 @@ func (agent *Agent) Call(
 
   defer res.Body.Close()
 
+  agent.Logger.Infoln(res.Body)
+
   // decode body
   if res.StatusCode >= 200 && res.StatusCode <= 209 {
-    json.NewDecoder(res.Body).Decode(response)
+    json.NewDecoder(res.Body).Decode(&response)
   } else if res.StatusCode >= 400 && res.StatusCode <= 409 {
 
   } else if res.StatusCode >= 500 && res.StatusCode <= 509 {

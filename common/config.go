@@ -12,7 +12,7 @@ const (
   SANDBOX Mode = "SANDBOX"
 
   // --------
-  BASE_URL string = "http://api.durianpay.id"
+  BASE_URL string = "https://api.durianpay.id/v1"
 
 
 )
