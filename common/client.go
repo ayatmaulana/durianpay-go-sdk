@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/sirupsen/logrus"
@@ -52,7 +53,12 @@ func (agent *Agent) Call(
 
   // decode body
   if res.StatusCode >= 200 && res.StatusCode <= 209 {
-    json.NewDecoder(res.Body).Decode(&response)
+    bodyByte, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+      agent.Logger.Infoln(err)
+    }
+    json.Unmarshal(bodyByte, &response)
+    // json.NewDecoder(res.Body).Decode(&response)
   } else if res.StatusCode >= 400 && res.StatusCode <= 409 {
 
   } else if res.StatusCode >= 500 && res.StatusCode <= 509 {
