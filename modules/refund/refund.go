@@ -2,6 +2,7 @@ package refund
 
 import (
 	"context"
+	"net/http"
 
 	"github.com/ayatmaulana/durianpay-go-sdk/common"
 )
@@ -15,16 +16,19 @@ type Refund struct {
 }
 
 func (r *Refund) CreateRefund(ctx context.Context, req *CreateRefundRequestPayload) (res *CreateRefundResponse, err error) {
-  err = r.Agent.Call(ctx, "POST", ROUTE_GROUP, req, res)
+  res = &CreateRefundResponse{}
+  err = r.Agent.Call(ctx, http.MethodPost, ROUTE_GROUP, req, res)
   return
 }
 
 func (r *Refund) FetchRefund(ctx context.Context) (res *FetchRefundResponse, err error) {
-  err = r.Agent.Call(ctx, "GET", ROUTE_GROUP, nil, res)
+  res = &FetchRefundResponse{}
+  err = r.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP, nil, res)
   return
 }
 
 func (r *Refund) FetchRefundById(ctx context.Context, refundId string) (res *FetchRefundByIdResponse, err error) {
-  err = r.Agent.Call(ctx, "GET", ROUTE_GROUP + "/" + refundId, nil, res)
+  res = &FetchRefundByIdResponse{}
+  err = r.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + "/" + refundId, nil, res)
   return
 }

@@ -31,7 +31,7 @@ const (
 )
 
 const (
-  ALFAMART RETAIL_STORE = "AFAMART"
+  ALFAMART RETAIL_STORE = "ALFAMART"
   INDOMARET = "INDOMARET"
 )
 
@@ -43,6 +43,12 @@ const (
   INDODANA BNPL = "INDODANA"
   AKULAKU = "AKULAKU"
 )
+
+type CustomerInfo struct {
+  ID        string `json:"id"`
+  Email     string `json:"email"`
+  GivenName string `json:"given_name"`
+}
 
 type ChargePaymentVARequestPayload struct {
 	OrderID  string `json:"order_id"`
@@ -68,11 +74,7 @@ type ChargePaymentRetailStorePayload struct {
 type ChargePaymentCardRequestPayload struct {
 	OrderID      string `json:"order_id"`
 	Amount       string `json:"amount"`
-	CustomerInfo struct {
-		ID        string `json:"id"`
-		Email     string `json:"email"`
-		GivenName string `json:"given_name"`
-	} `json:"customer_info"`
+        CustomerInfo          CustomerInfo `json:"customer_info"`
 }
 
 type ChargePaymentOnlineBankingRequestPayload struct {
@@ -80,11 +82,7 @@ type ChargePaymentOnlineBankingRequestPayload struct {
 	Type         ONLINE_BANKING `json:"type"`
 	Name         string `json:"name"`
 	Amount       string `json:"amount"`
-	CustomerInfo struct {
-		Email     string `json:"email"`
-		GivenName string `json:"given_name"`
-		ID        string `json:"id"`
-	} `json:"customer_info"`
+        CustomerInfo          CustomerInfo `json:"customer_info"`
 	Mobile string `json:"mobile"`
 }
 
@@ -99,10 +97,6 @@ type ChargePaymentBNPLRequestPayload struct {
 	OrderID               string `json:"order_id"`
 	Amount                string `json:"amount"`
 	PaymentMethodUniqueID BNPL `json:"payment_method_unique_id"`
-	CustomerInfo          struct {
-		ID        string `json:"id"`
-		Email     string `json:"email"`
-		GivenName string `json:"given_name"`
-	} `json:"customer_info"`
+        CustomerInfo          CustomerInfo `json:"customer_info"`
 }
 

@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
+
 	"net/http"
+	"net/http/httputil"
 
 	"github.com/sirupsen/logrus"
 )
@@ -22,18 +24,16 @@ func (agent *Agent) Call(
   url string, 
   body any,
   response any,
-) error {
+) ( err error) {
   fullUrl := BASE_URL + url
   
-  agent.Logger.Infoln(fullUrl)
-
   var bodyBuffer bytes.Buffer
-  err := json.NewEncoder(&bodyBuffer).Encode(body)
+  err = json.NewEncoder(&bodyBuffer).Encode(body)
 
   req, err := http.NewRequest(method, fullUrl, &bodyBuffer)
 
   if err != nil {
-
+    return
   }
 
   req.WithContext(ctx)
@@ -44,28 +44,49 @@ func (agent *Agent) Call(
   res, err := agent.HttpClient.Do(req)
 
   if err != nil {
-
+    return
   }
 
   defer res.Body.Close()
 
-  agent.Logger.Infoln(res.Body)
+  if agent.ClientConfig.EnableLogging {
+    agent.debug(req, res)
+  }
 
   // decode body
   if res.StatusCode >= 200 && res.StatusCode <= 209 {
-    bodyByte, err := ioutil.ReadAll(res.Body)
-    if err != nil {
-      agent.Logger.Infoln(err)
-    }
-    json.Unmarshal(bodyByte, &response)
-    // json.NewDecoder(res.Body).Decode(&response)
+    err = json.NewDecoder(res.Body).Decode(&response)
   } else if res.StatusCode >= 400 && res.StatusCode <= 409 {
+    b, err  := io.ReadAll(res.Body)
+    if err != nil {
+      return err
+
+    }
+
+    agent.Logger.Errorln(string(b))
+    agent.Logger.Errorln(err)
 
   } else if res.StatusCode >= 500 && res.StatusCode <= 509 {
+    b, err  := io.ReadAll(res.Body)
+    if err != nil {
+      return err
+    }
 
+    agent.Logger.Errorln(string(b))
+    agent.Logger.Errorln(err)
   }
 
-  return nil
+  return
+}
+
+func (agent *Agent) debug (req *http.Request, res *http.Response) {
+  debugReq, err := httputil.DumpRequest(req, true)
+  agent.Logger.Infoln(string(debugReq))
+
+  debug, err := httputil.DumpResponse(res, true)
+  if err != nil {}
+
+  agent.Logger.Infoln(string(debug))
 }
 
 func NewAgent(clientConfig *ClientConfig) *Agent {

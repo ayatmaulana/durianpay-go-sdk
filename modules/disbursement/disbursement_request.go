@@ -6,10 +6,7 @@ type TopupRequestPayload struct {
 }
 
 // -- Submit Disbursement Payload
-type SubmitDisbursementRequestPayload struct {
-  Name        string `json:"name"`
-  Description string `json:"description"`
-  Items       []struct {
+type Item struct {
     AccountOwnerName string `json:"account_owner_name"`
     BankCode         string `json:"bank_code"`
     Amount           string `json:"amount"`
@@ -17,7 +14,12 @@ type SubmitDisbursementRequestPayload struct {
     EmailRecipient   string `json:"email_recipient"`
     PhoneNumber      string `json:"phone_number"`
     Notes            string `json:"notes"`
-  } `json:"items"`
+}
+
+type SubmitDisbursementRequestPayload struct {
+  Name        string `json:"name"`
+  Description string `json:"description"`
+  Items       []Item `json:"items"`
 }
 
 // -- Validate Bank AccountNumber
