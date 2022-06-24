@@ -66,27 +66,25 @@ import (
     Amount: "100000",
     Currency: "IDR",
     ExpiryDate: time.Now().Add(time.Hour + time.Duration(24)),
-    OrderRefID: "My-Reff-Order-xxxxx1",
+    OrderRefID: "INV/ORDER/xxxxx1",
     PaymentOption: "full_payment",
     Metadata: order.Metadata{},
     Items: []order.Items{
       {
-        Name: "Sabun",
+        Name: "Soap",
         Qty: 1,
         Price: "100000",
         Logo: "",
       },
     },
     Customer: order.Customer{
-      CustomerRefID: "ref-xx-1" ,
-      GivenName: "Ayat Mauma",
-      Email: "aaa@mailinator.com",
-      Mobile: "08164242171",
+      CustomerRefID: "CUS/xx1" ,
+      GivenName: "Ayat Maulana",
+      Email: "myemail@example.com",
+      Mobile: "0812345678",
       Address: order.Address{
         ReceiverName: "Hehe",
-        ReceiverPhone: "08164242171",
-        Label: "Label",
-
+        ReceiverPhone: "0812345678",
       },
     },
   }
@@ -105,7 +103,7 @@ import (
   res, err := dp.Payment.ChargePaymentVA(ctx, &payment.ChargePaymentVARequestPayload{
     OrderID: orderId,
     Amount: "100000",
-    BankCode: payment.MANDIRI,
+    BankCode: payment.BCA,
     Name: "Ayat Maulana",
   }, &payment.SandboxOption{
     ForceFail: true,

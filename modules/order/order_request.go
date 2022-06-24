@@ -1,9 +1,17 @@
 package order
 
 import "time"
+
+type PAYMENT_OPTION string
+
+const (
+  INSTALLMENT PAYMENT_OPTION = "installment"
+  FULL_PAYMENT PAYMENT_OPTION = "full_payment"
+)
+
 type CreateOrderRequestPayload struct {
 	Amount        string    `json:"amount"`
-	PaymentOption string    `json:"payment_option"`
+	PaymentOption PAYMENT_OPTION    `json:"payment_option"`
 	Currency      string    `json:"currency"`
 	OrderRefID    string    `json:"order_ref_id"`
 	Customer      Customer  `json:"customer"`
