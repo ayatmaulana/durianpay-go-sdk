@@ -1,10 +1,9 @@
 # Durianpay SDK for Golang (Unofficial)
 
-<br />
 
 ## 🧐 Project Philosophy
 
-> Durianpay is a Payment Gateway that can be used in Indonesia with the support of many payment methods such as VA, Bank Transfer, EWallet, Bank Transfer, Credit Card, and of course PayLater. Not only that, to get to GO Live the process is very easy.
+> Durianpay is a Payment Gateway that can be used in Indonesia with the support of many payment methods such as VA, Bank Transfer, EWallet, Bank Transfer, Credit Card, and of course PayLater. Not only that, to get to Go Live the process is very easy.
 > 
 > But it's a shame, besides the API that can be used but there is no Official SDK that has been created and supported by Durianpay, this greatly adds to the workload when you want to use Golang as a language that will be integrated with Durianpay
 
@@ -126,16 +125,19 @@ if err != nil {
 log.Println(res)
 ```
 ## 📐 Todo 
-- [x] Order
-- [x] Payment
-- [x] Promo
-- [x] Disbursement
-- [x] Settlement
-- [x] Refund
-- [x] Subscription
-- [ ] EWallet Account
-- [ ] Customer
-- [ ] Static VA
+- [ ] API Integration
+  - [x] Order
+  - [x] Payment
+  - [x] Promo
+  - [x] Disbursement
+  - [x] Settlement
+  - [x] Refund
+  - [x] Subscription
+  - [ ] EWallet Account
+  - [ ] Customer
+  - [ ] Static VA
+- [ ] Testing
+- [ ] Documentation per module
 
 ## ✍️ Contributing
 
