@@ -126,6 +126,15 @@ log.Println(res)
 - [ ] API Integration
   - [x] Order
   - [x] Payment
+    - [x] Virtual Account
+    - [x] Online Bank
+    - [x] EWallet
+    - [x] QRIS
+    - [x] EWallet
+    - [x] Retail Store (ALFAMART/INDOMARET)
+    - [x] Online Card
+    - [x] Buy Now Pay Later (BNPL)
+    - [ ] BCA Aggregator
   - [x] Promo
   - [x] Disbursement
   - [x] Settlement
