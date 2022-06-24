@@ -7,6 +7,15 @@ type ClientConfig struct {
   ApiKey string
   EnableLogging bool
 }
+
+type QueryParams struct {
+  from int `url:"from,omitempty"`
+  to int `url:"to,omitempty"`
+  skip int `url:"skip,omitempty"`
+  limit int `url:"limit,omitempty"`
+}
+
+
 const (
   LIVE Mode = "LIVE"
   SANDBOX Mode = "SANDBOX"

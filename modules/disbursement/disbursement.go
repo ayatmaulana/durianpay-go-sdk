@@ -47,25 +47,25 @@ func (d *Disbursement) SubmitDisbursement(ctx context.Context, req *SubmitDisbur
 
 func (d *Disbursement) ApproveDisbursement(ctx context.Context, disbursementId string) (res *ApproveDisbursementResponse, err error){
   res = &ApproveDisbursementResponse{}
-  err = d.Agent.Call(ctx, http.MethodPost, ROUTE_GROUP + disbursementId + "/approve", nil, res)
+  err = d.Agent.Call(ctx, http.MethodPost, ROUTE_GROUP + "/" + disbursementId + "/approve", nil, res)
   return
 }
 
 func (d *Disbursement) FetchDisbursementItemsById(ctx context.Context, disbursementId string) (res *FetchDisbursementItemsByIdResponse, err error) {
   res = &FetchDisbursementItemsByIdResponse{}
-  err = d.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + disbursementId + "/items", nil, res)
+  err = d.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + "/" + disbursementId + "/items", nil, res)
   return
 }
 
 func (d *Disbursement) FetchDisbursementById(ctx context.Context, disbursementId string) (res *FetchDisbursementByIdResponse, err error) {
   res = &FetchDisbursementByIdResponse{}
-  err = d.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + disbursementId, nil, res)
+  err = d.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + "/" + disbursementId, nil, res)
   return
 }
 
 func (d *Disbursement) DeleteDisbursement(ctx context.Context, disbursementId string) (res *DeleteDisbursementResponse, err error){
   res = &DeleteDisbursementResponse{}
-  err = d.Agent.Call(ctx, http.MethodDelete, ROUTE_GROUP + disbursementId, nil, res)
+  err = d.Agent.Call(ctx, http.MethodDelete, ROUTE_GROUP + "/" + disbursementId, nil, res)
   return
 }
 

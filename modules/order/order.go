@@ -30,7 +30,7 @@ func (o *Order) FetchOrder(ctx context.Context) (res *FetchOrderResponse, err er
 
 func (o *Order) FetchOrderById(ctx context.Context, orderId string) (res *FetchOrderByIdResponse, err error) {
   res = &FetchOrderByIdResponse{}
-  o.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + orderId, nil, res)
+  o.Agent.Call(ctx, http.MethodGet, ROUTE_GROUP + "/" + orderId, nil, res)
   return
 }
 

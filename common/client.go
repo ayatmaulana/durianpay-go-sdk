@@ -36,7 +36,7 @@ func (agent *Agent) Call(
     return
   }
 
-  req.WithContext(ctx)
+  req = req.WithContext(ctx)
   req.SetBasicAuth(agent.ClientConfig.ApiKey, "")
   req.Header.Add("Content-Type", "application/json")
   req.Header.Add("Accept", "application/json")
