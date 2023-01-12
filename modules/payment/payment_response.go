@@ -28,16 +28,20 @@ type FetchPaymentByIdResponse struct {
 }
 
 type ChargePaymentVAResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID      string    `json:"payment_id"`
-		OrderID        string    `json:"order_id"`
-		AccountNumber  string    `json:"account_number"`
-		ExpirationTime time.Time `json:"expiration_time"`
-		PaidAmount     string    `json:"paid_amount"`
-		Metadata       struct {
-		} `json:"metadata"`
-	} `json:"response"`
+	Data struct {
+		Type     string `json:"type"`
+		Response struct {
+			PaymentID          string    `json:"payment_id"`
+			OrderID            string    `json:"order_id"`
+			AccountNumber      string    `json:"account_number"`
+			ExpirationTime     time.Time `json:"expiration_time"`
+			PaidAmount         string    `json:"paid_amount"`
+			PaymentInstruction struct {
+			} `json:"payment_instruction"`
+			Metadata struct {
+			} `json:"metadata"`
+		} `json:"response"`
+	} `json:"data"`
 }
 
 type ChargePaymentEWalletResponse struct {
@@ -153,5 +157,5 @@ type CancelPaymentResponse struct {
 }
 
 type MDRFeeCalculationResponse struct {
-  Data map[string]interface{}
+	Data map[string]interface{}
 }
