@@ -45,93 +45,105 @@ type ChargePaymentVAResponse struct {
 }
 
 type ChargePaymentEWalletResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID      string    `json:"payment_id"`
-		OrderID        string    `json:"order_id"`
-		Mobile         string    `json:"mobile"`
-		Status         string    `json:"status"`
-		ExpirationTime time.Time `json:"expiration_time"`
-		CheckoutURL    string    `json:"checkout_url"`
-		PaidAmount     string    `json:"paid_amount"`
-		Metadata       struct {
-		} `json:"metadata"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      PaymentID      string    `json:"payment_id"`
+      OrderID        string    `json:"order_id"`
+      Mobile         string    `json:"mobile"`
+      Status         string    `json:"status"`
+      ExpirationTime time.Time `json:"expiration_time"`
+      CheckoutURL    string    `json:"checkout_url"`
+      PaidAmount     string    `json:"paid_amount"`
+      Metadata       struct {
+      } `json:"metadata"`
+    } `json:"response"`
+  }
 }
 
 type ChargePaymentRetailStoreResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID      string    `json:"payment_id"`
-		OrderID        string    `json:"order_id"`
-		AccountNumber  string    `json:"account_number"`
-		ExpirationTime time.Time `json:"expiration_time"`
-		PaidAmount     string    `json:"paid_amount"`
-		Metadata       struct {
-		} `json:"metadata"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      PaymentID      string    `json:"payment_id"`
+      OrderID        string    `json:"order_id"`
+      AccountNumber  string    `json:"account_number"`
+      ExpirationTime time.Time `json:"expiration_time"`
+      PaidAmount     string    `json:"paid_amount"`
+      Metadata       struct {
+      } `json:"metadata"`
+    } `json:"response"`
+  }
 }
 
 type ChargePaymentCardResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID    string `json:"payment_id"`
-		OrderID      string `json:"order_id"`
-		PaymentRefID string `json:"payment_ref_id"`
-		TokenID      string `json:"token_id"`
-		Status       string `json:"status"`
-		PaidAmount   string `json:"paid_amount"`
-		Metadata     struct {
-		} `json:"metadata"`
-		CheckoutURL string `json:"checkout_url"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      PaymentID    string `json:"payment_id"`
+      OrderID      string `json:"order_id"`
+      PaymentRefID string `json:"payment_ref_id"`
+      TokenID      string `json:"token_id"`
+      Status       string `json:"status"`
+      PaidAmount   string `json:"paid_amount"`
+      Metadata     struct {
+      } `json:"metadata"`
+      CheckoutURL string `json:"checkout_url"`
+    } `json:"resp}onse"`
+  }
 }
 
 type ChargePaymentOnlineBankingResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		ExpirationTime time.Time `json:"expiration_time"`
-		Metadata       struct {
-		} `json:"metadata"`
-		Mobile     string `json:"mobile"`
-		OrderID    string `json:"order_id"`
-		PaidAmount string `json:"paid_amount"`
-		PaymentID  string `json:"payment_id"`
-		Status     string `json:"status"`
-		UniqueID   string `json:"unique_id"`
-		WebURL     string `json:"web_url"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      ExpirationTime time.Time `json:"expiration_time"`
+      Metadata       struct {
+      } `json:"metadata"`
+      Mobile     string `json:"mobile"`
+      OrderID    string `json:"order_id"`
+      PaidAmount string `json:"paid_amount"`
+      PaymentID  string `json:"payment_id"`
+      Status     string `json:"status"`
+      UniqueID   string `json:"unique_id"`
+      WebURL     string `json:"web_url"`
+    } `json:"response"`
+  }
 }
 
 type ChargePaymentQRISResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID      string    `json:"payment_id"`
-		OrderID        string    `json:"order_id"`
-		Status         string    `json:"status"`
-		ExpirationTime time.Time `json:"expiration_time"`
-		CreationTime   time.Time `json:"creation_time"`
-		QrString       string    `json:"qr_string"`
-		UniqueID       string    `json:"unique_id"`
-		Metadata       struct {
-			MerchantName string `json:"merchant_name"`
-			MerchantID   string `json:"merchant_id"`
-		} `json:"metadata"`
-		Amount string `json:"amount"`
-		QrCode string `json:"qr_code"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      PaymentID      string    `json:"payment_id"`
+      OrderID        string    `json:"order_id"`
+      Status         string    `json:"status"`
+      ExpirationTime time.Time `json:"expiration_time"`
+      CreationTime   time.Time `json:"creation_time"`
+      QrString       string    `json:"qr_string"`
+      UniqueID       string    `json:"unique_id"`
+      Metadata       struct {
+        MerchantName string `json:"merchant_name"`
+        MerchantID   string `json:"merchant_id"`
+      } `json:"metadata"`
+      Amount string `json:"amount"`
+      QrCode string `json:"qr_code"`
+    } `json:"response"`
+  }
 }
 
 type ChargePaymentBNPLResponse struct {
-	Type     string `json:"type"`
-	Response struct {
-		PaymentID   string `json:"payment_id"`
-		OrderID     string `json:"order_id"`
-		RedirectURL string `json:"redirect_url"`
-		PaidAmount  string `json:"paid_amount"`
-		Metadata    struct {
-		} `json:"metadata"`
-	} `json:"response"`
+  Data struct {
+    Type     string `json:"type"`
+    Response struct {
+      PaymentID   string `json:"payment_id"`
+      OrderID     string `json:"order_id"`
+      RedirectURL string `json:"redirect_url"`
+      PaidAmount  string `json:"paid_amount"`
+      Metadata    struct {
+      } `json:"metadata"`
+    } `json:"response"`
+  }
 }
 
 type CheckPaymentStatusResponse struct {
